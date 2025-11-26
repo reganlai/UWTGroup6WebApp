@@ -62,7 +62,7 @@ export const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         try {
           // Generate a valid username from email (only letters, numbers, underscores, hyphens)
-          const username = credentials?.email!.split('@')[0].replace(/[^a-zA-Z0-9_-]/g, '_');
+          const username = credentials?.email?.split('@')[0].replace(/[^a-zA-Z0-9_-]/g, '_') || 'user';
 
           const response = await authApi.register({
             firstname: credentials?.firstname!,
