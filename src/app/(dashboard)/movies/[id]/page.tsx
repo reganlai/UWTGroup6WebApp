@@ -1,7 +1,5 @@
-'use client';
-
 import { notFound } from 'next/navigation';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -20,14 +18,14 @@ import { getMovieById } from 'data/mockData';
 import Image from 'next/image';
 
 interface MovieDetailPageProps {
-    params: {
+    params: Promise<{
         id: string;
-    };
+    }>;
 }
 
-export default function MovieDetailPage({ params }: MovieDetailPageProps) {
-    const router = useRouter();
-    const movie = getMovieById(parseInt(params.id));
+export default async function MovieDetailPage({ params }: MovieDetailPageProps) {
+    const { id } = await params;
+    const movie = getMovieById(parseInt(id));
 
     if (!movie) {
         notFound();
@@ -35,7 +33,7 @@ export default function MovieDetailPage({ params }: MovieDetailPageProps) {
 
     return (
         <Box>
-            <Button startIcon={<ArrowBackIcon />} onClick={() => router.back()} sx={{ mb: 3 }}>
+            <Button component={Link} href="/movies" startIcon={<ArrowBackIcon />} sx={{ mb: 3 }}>
                 Back to Movies
             </Button>
 

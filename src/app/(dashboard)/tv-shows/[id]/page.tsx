@@ -1,7 +1,5 @@
-'use client';
-
 import { notFound } from 'next/navigation';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -20,14 +18,14 @@ import { getTVShowById } from 'data/mockData';
 import Image from 'next/image';
 
 interface TVShowDetailPageProps {
-    params: {
+    params: Promise<{
         id: string;
-    };
+    }>;
 }
 
-export default function TVShowDetailPage({ params }: TVShowDetailPageProps) {
-    const router = useRouter();
-    const show = getTVShowById(parseInt(params.id));
+export default async function TVShowDetailPage({ params }: TVShowDetailPageProps) {
+    const { id } = await params;
+    const show = getTVShowById(parseInt(id));
 
     if (!show) {
         notFound();
@@ -35,7 +33,7 @@ export default function TVShowDetailPage({ params }: TVShowDetailPageProps) {
 
     return (
         <Box>
-            <Button startIcon={<ArrowBackIcon />} onClick={() => router.back()} sx={{ mb: 3 }}>
+            <Button component={Link} href="/tv-shows" startIcon={<ArrowBackIcon />} sx={{ mb: 3 }}>
                 Back to TV Shows
             </Button>
 
