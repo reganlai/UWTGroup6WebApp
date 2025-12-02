@@ -19,6 +19,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'picsum.photos',
         pathname: '**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'image.tmdb.org',
+        pathname: '**'
       }
     ]
   },

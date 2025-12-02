@@ -37,23 +37,34 @@ export default function MovieCard({ movie }: MovieCardProps) {
             }}
         >
             <CardActionArea onClick={handleClick} sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
-                <CardMedia component="img" height="400" image={movie.posterPath} alt={movie.title} sx={{ objectFit: 'cover' }} />
+                <CardMedia
+                    component="img"
+                    height="400"
+                    image={`https://image.tmdb.org/t/p/w500${movie.poster_url}`}
+                    alt={movie.title}
+                    sx={{ objectFit: 'cover' }}
+                />
                 <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="div" noWrap>
                         {movie.title}
                     </Typography>
                     <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                        <Rating value={movie.voteAverage / 2} precision={0.1} readOnly size="small" />
+                        <Rating value={(movie.vote_average || 0) / 2} precision={0.1} readOnly size="small" />
                         <Typography variant="body2" color="text.secondary" sx={{ ml: 1 }}>
-                            {movie.voteAverage.toFixed(1)}/10
+                            {movie.vote_average?.toFixed(1) || '0.0'}/10
                         </Typography>
                     </Box>
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                        {new Date(movie.releaseDate).getFullYear()}
+                        {movie.release_date ? new Date(movie.release_date).getFullYear() : 'N/A'}
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mb: 1 }}>
-                        {movie.genres?.filter(Boolean).slice(0, 3).map((genre) => (
-                            <Chip key={genre.id} label={genre.name} size="small" variant="outlined" />
+                        {movie.genres?.filter(Boolean).slice(0, 3).map((genre, index) => (
+                            <Chip
+                                key={index}
+                                label={genre}
+                                size="small"
+                                variant="outlined"
+                            />
                         ))}
                     </Box>
                     <Typography

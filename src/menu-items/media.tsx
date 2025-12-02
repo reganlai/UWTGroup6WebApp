@@ -3,14 +3,15 @@ import { FormattedMessage } from 'react-intl';
 
 // assets
 import MovieOutlined from '@ant-design/icons/VideoCameraOutlined';
-import TvOutlined from '@ant-design/icons/PlaySquareOutlined';
+import PlusOutlined from '@ant-design/icons/PlusOutlined';
+import BookOutlined from '@ant-design/icons/BookOutlined';
 import LockOutlined from '@ant-design/icons/LockOutlined';
 
 // type
 import { NavItemType } from 'types/menu';
 
 // icons
-const icons = { MovieOutlined, TvOutlined, LockOutlined };
+const icons = { MovieOutlined, PlusOutlined, BookOutlined, LockOutlined };
 
 // ==============================|| MENU ITEMS - MEDIA & ACCOUNT ||============================== //
 
@@ -31,7 +32,21 @@ const media: NavItemType = {
             title: <FormattedMessage id="tv-shows" />,
             type: 'item',
             url: '/tv-shows',
-            icon: icons.TvOutlined
+            icon: icons.PlusOutlined
+        },
+        {
+            id: 'create-media',
+            title: <FormattedMessage id="create-media" />,
+            type: 'item',
+            url: '/create-media',
+            icon: icons.PlusOutlined
+        },
+        {
+            id: 'watchlist',
+            title: <FormattedMessage id="watchlist" />,
+            type: 'item',
+            url: '/watchlist',
+            icon: icons.BookOutlined
         },
         {
             id: 'change-password',

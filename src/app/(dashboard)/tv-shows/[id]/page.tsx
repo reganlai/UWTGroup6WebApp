@@ -14,7 +14,10 @@ import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import TvIcon from '@mui/icons-material/Tv';
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 
-import { getTVShowById } from 'data/mockData';
+import DeleteMediaButton from 'components/media/DeleteMediaButton';
+import WatchlistButton from 'components/media/WatchlistButton';
+
+import { mediaApi } from 'services/mediaApi';
 import Image from 'next/image';
 
 interface TVShowDetailPageProps {
@@ -25,7 +28,15 @@ interface TVShowDetailPageProps {
 
 export default async function TVShowDetailPage({ params }: TVShowDetailPageProps) {
     const { id } = await params;
-    const show = getTVShowById(parseInt(id));
+    let show;
+
+    try {
+        const response = await mediaApi.getTVShow(id);
+        show = response.data;
+    } catch (error) {
+        console.error('Failed to fetch TV show:', error);
+        notFound();
+    }
 
     if (!show) {
         notFound();
@@ -47,9 +58,15 @@ export default async function TVShowDetailPage({ params }: TVShowDetailPageProps
 
                 {/* Details */}
                 <Grid item xs={12} md={8}>
-                    <Typography variant="h2" gutterBottom>
-                        {show.name}
-                    </Typography>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                        <Typography variant="h2" gutterBottom>
+                            {show.name}
+                        </Typography>
+                        <Box sx={{ display: 'flex', gap: 1 }}>
+                            <WatchlistButton media={show} type="tvshow" />
+                            <DeleteMediaButton id={show.id} type="tvshow" title={show.name} />
+                        </Box>
+                    </Box>
 
                     {show.tagline && (
                         <Typography variant="h6" color="text.secondary" sx={{ fontStyle: 'italic', mb: 2 }}>

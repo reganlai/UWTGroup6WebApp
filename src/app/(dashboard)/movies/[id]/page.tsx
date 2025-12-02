@@ -7,14 +7,14 @@ import Grid from '@mui/material/Grid';
 import Chip from '@mui/material/Chip';
 import Rating from '@mui/material/Rating';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import Divider from '@mui/material/Divider';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 
-import { getMovieById } from 'data/mockData';
+import DeleteMediaButton from 'components/media/DeleteMediaButton';
+import WatchlistButton from 'components/media/WatchlistButton';
+
 import Image from 'next/image';
 
 interface MovieDetailPageProps {
@@ -25,7 +25,24 @@ interface MovieDetailPageProps {
 
 export default async function MovieDetailPage({ params }: MovieDetailPageProps) {
     const { id } = await params;
-    const movie = getMovieById(parseInt(id));
+    let movie;
+
+    try {
+        // Use fetch for server-side data fetching
+        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+        const response = await fetch(`${baseUrl}/api/movies/${id}`, {
+            cache: 'no-store'
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to fetch movie');
+        }
+
+        movie = await response.json();
+    } catch (error) {
+        console.error('Failed to fetch movie:', error);
+        notFound();
+    }
 
     if (!movie) {
         notFound();
@@ -42,7 +59,7 @@ export default async function MovieDetailPage({ params }: MovieDetailPageProps) 
                 <Grid item xs={12} md={4}>
                     <Card>
                         <Image
-                            src={movie.posterPath}
+                            src={`https://image.tmdb.org/t/p/w500${movie.poster_url}`}
                             alt={movie.title}
                             width={400}
                             height={600}
@@ -54,9 +71,15 @@ export default async function MovieDetailPage({ params }: MovieDetailPageProps) 
 
                 {/* Details */}
                 <Grid item xs={12} md={8}>
-                    <Typography variant="h2" gutterBottom>
-                        {movie.title}
-                    </Typography>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                        <Typography variant="h2" gutterBottom>
+                            {movie.title}
+                        </Typography>
+                        <Box sx={{ display: 'flex', gap: 1 }}>
+                            <WatchlistButton media={movie} type="movie" />
+                            <DeleteMediaButton id={movie.id} type="movie" title={movie.title} />
+                        </Box>
+                    </Box>
 
                     {movie.tagline && (
                         <Typography variant="h6" color="text.secondary" sx={{ fontStyle: 'italic', mb: 2 }}>
@@ -65,18 +88,20 @@ export default async function MovieDetailPage({ params }: MovieDetailPageProps) 
                     )}
 
                     <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                        <Rating value={movie.voteAverage / 2} precision={0.1} readOnly />
+                        <Rating value={(movie.vote_average || 0) / 2} precision={0.1} readOnly size="large" />
                         <Typography variant="h6" sx={{ ml: 1 }}>
-                            {movie.voteAverage.toFixed(1)}/10
+                            {movie.vote_average?.toFixed(1) || '0.0'}/10
                         </Typography>
-                        <Typography variant="body2" color="text.secondary" sx={{ ml: 2 }}>
-                            ({movie.voteCount.toLocaleString()} votes)
-                        </Typography>
+                        {movie.vote_count && movie.vote_count > 0 && (
+                            <Typography variant="body2" color="text.secondary" sx={{ ml: 2 }}>
+                                ({movie.vote_count.toLocaleString()} votes)
+                            </Typography>
+                        )}
                     </Box>
 
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 3 }}>
-                        {movie.genres.map((genre) => (
-                            <Chip key={genre.id} label={genre.name} color="primary" />
+                        {movie.genres?.map((genre: string, index: number) => (
+                            <Chip key={index} label={genre} color="primary" />
                         ))}
                     </Box>
 
@@ -85,7 +110,14 @@ export default async function MovieDetailPage({ params }: MovieDetailPageProps) 
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                                 <CalendarTodayIcon fontSize="small" color="action" />
                                 <Typography variant="body1">
-                                    <strong>Release Date:</strong> {new Date(movie.releaseDate).toLocaleDateString()}
+                                    <strong>Release Date:</strong>{' '}
+                                    {movie.release_date
+                                        ? new Date(movie.release_date).toLocaleDateString('en-US', {
+                                            year: 'numeric',
+                                            month: 'long',
+                                            day: 'numeric'
+                                        })
+                                        : 'N/A'}
                                 </Typography>
                             </Box>
                         </Grid>
@@ -99,46 +131,14 @@ export default async function MovieDetailPage({ params }: MovieDetailPageProps) 
                                 </Box>
                             </Grid>
                         )}
-                        {movie.status && (
+                        {movie.mpa_rating && (
                             <Grid item xs={12} sm={6}>
                                 <Typography variant="body1">
-                                    <strong>Status:</strong> {movie.status}
-                                </Typography>
-                            </Grid>
-                        )}
-                        {movie.director && (
-                            <Grid item xs={12} sm={6}>
-                                <Typography variant="body1">
-                                    <strong>Director:</strong> {movie.director}
+                                    <strong>Rating:</strong> {movie.mpa_rating}
                                 </Typography>
                             </Grid>
                         )}
                     </Grid>
-
-                    {(movie.budget || movie.revenue) && (
-                        <Grid container spacing={2} sx={{ mb: 3 }}>
-                            {movie.budget && (
-                                <Grid item xs={12} sm={6}>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <AttachMoneyIcon fontSize="small" color="action" />
-                                        <Typography variant="body1">
-                                            <strong>Budget:</strong> ${movie.budget.toLocaleString()}
-                                        </Typography>
-                                    </Box>
-                                </Grid>
-                            )}
-                            {movie.revenue && (
-                                <Grid item xs={12} sm={6}>
-                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                                        <AttachMoneyIcon fontSize="small" color="action" />
-                                        <Typography variant="body1">
-                                            <strong>Revenue:</strong> ${movie.revenue.toLocaleString()}
-                                        </Typography>
-                                    </Box>
-                                </Grid>
-                            )}
-                        </Grid>
-                    )}
 
                     <Divider sx={{ my: 3 }} />
 
@@ -149,38 +149,51 @@ export default async function MovieDetailPage({ params }: MovieDetailPageProps) 
                         {movie.overview}
                     </Typography>
 
-                    <Divider sx={{ my: 3 }} />
+                    {movie.directors && movie.directors.length > 0 && (
+                        <>
+                            <Divider sx={{ my: 3 }} />
+                            <Typography variant="h5" gutterBottom>
+                                Director{movie.directors.length > 1 ? 's' : ''}
+                            </Typography>
+                            <Typography variant="body1">
+                                {movie.directors.join(', ')}
+                            </Typography>
+                        </>
+                    )}
 
-                    <Typography variant="h5" gutterBottom>
-                        Cast
-                    </Typography>
-                    <Grid container spacing={2}>
-                        {movie.cast.map((member) => (
-                            <Grid item xs={12} sm={6} md={4} key={member.id}>
-                                <Card variant="outlined">
-                                    <CardContent>
-                                        <Typography variant="subtitle1" fontWeight="bold">
-                                            {member.name}
-                                        </Typography>
-                                        <Typography variant="body2" color="text.secondary">
-                                            as {member.character}
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
+                    {movie.actors && movie.actors.length > 0 && (
+                        <>
+                            <Divider sx={{ my: 3 }} />
+                            <Typography variant="h5" gutterBottom>
+                                Cast
+                            </Typography>
+                            <Grid container spacing={2}>
+                                {movie.actors.slice(0, 6).map((actor: any, index: number) => (
+                                    <Grid item xs={12} sm={6} md={4} key={index}>
+                                        <Box>
+                                            <Typography variant="subtitle1" fontWeight="bold">
+                                                {actor.name}
+                                            </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                                as {actor.character}
+                                            </Typography>
+                                        </Box>
+                                    </Grid>
+                                ))}
                             </Grid>
-                        ))}
-                    </Grid>
+                        </>
+                    )}
                 </Grid>
             </Grid>
 
-            {movie.backdropPath && (
+            {movie.backdrop_url && (
                 <Box sx={{ mt: 4 }}>
                     <Typography variant="h5" gutterBottom>
                         Backdrop
                     </Typography>
                     <Card>
                         <Image
-                            src={movie.backdropPath}
+                            src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_url}`}
                             alt={`${movie.title} backdrop`}
                             width={1280}
                             height={720}

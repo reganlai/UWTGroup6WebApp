@@ -16,19 +16,25 @@ export interface Movie {
     id: number;
     title: string;
     overview: string;
-    posterPath: string;
-    backdropPath?: string;
-    releaseDate: string;
-    voteAverage: number;
-    voteCount: number;
-    genres: Genre[];
+    poster_url: string;
+    backdrop_url?: string;
+    release_date: string;
+    vote_average?: number;
+    vote_count?: number;
+    genres: string[]; // API returns array of strings, not objects
     runtime?: number;
     tagline?: string;
-    cast: CastMember[];
-    director?: string;
-    budget?: number;
-    revenue?: number;
-    status?: string;
+    mpa_rating?: string;
+    budget?: string;
+    revenue?: string;
+    collection?: string | null;
+    original_title?: string;
+    directors?: string[];
+    actors?: Array<{
+        name: string;
+        character: string;
+        profile?: string;
+    }>;
 }
 
 export interface TVShow {

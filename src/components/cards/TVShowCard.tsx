@@ -37,23 +37,35 @@ export default function TVShowCard({ show }: TVShowCardProps) {
             }}
         >
             <CardActionArea onClick={handleClick} sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
-                <CardMedia component="img" height="400" image={show.posterPath} alt={show.name} sx={{ objectFit: 'cover' }} />
+                <CardMedia
+                    component="img"
+                    height="400"
+                    image={`https://image.tmdb.org/t/p/w500${show.posterPath}`}
+                    alt={show.name}
+                    sx={{ objectFit: 'cover' }}
+                />
                 <CardContent sx={{ flexGrow: 1 }}>
                     <Typography gutterBottom variant="h5" component="div" noWrap>
                         {show.name}
                     </Typography>
                     <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                        <Rating value={show.voteAverage / 2} precision={0.1} readOnly size="small" />
+                        <Rating value={(show.voteAverage || 0) / 2} precision={0.1} readOnly size="small" />
                         <Typography variant="body2" color="text.secondary" sx={{ ml: 1 }}>
-                            {show.voteAverage.toFixed(1)}/10
+                            {show.voteAverage?.toFixed(1) || '0.0'}/10
                         </Typography>
                     </Box>
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                        {new Date(show.firstAirDate).getFullYear()} • {show.numberOfSeasons} Season{show.numberOfSeasons !== 1 ? 's' : ''}
+                        {show.firstAirDate ? new Date(show.firstAirDate).getFullYear() : 'N/A'}
+                        {show.numberOfSeasons && ` • ${show.numberOfSeasons} Season${show.numberOfSeasons !== 1 ? 's' : ''}`}
                     </Typography>
                     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mb: 1 }}>
-                        {show.genres?.filter(Boolean).slice(0, 3).map((genre) => (
-                            <Chip key={genre.id} label={genre.name} size="small" variant="outlined" />
+                        {show.genres?.filter(Boolean).slice(0, 3).map((genre, index) => (
+                            <Chip
+                                key={typeof genre === 'string' ? genre : genre.id || index}
+                                label={typeof genre === 'string' ? genre : genre.name}
+                                size="small"
+                                variant="outlined"
+                            />
                         ))}
                     </Box>
                     <Typography

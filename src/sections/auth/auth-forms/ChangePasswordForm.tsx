@@ -22,6 +22,7 @@ import { Formik } from 'formik';
 // project import
 import IconButton from 'components/@extended/IconButton';
 import AnimateButton from 'components/@extended/AnimateButton';
+import { authApi } from 'services/authApi';
 
 import { strengthColor, strengthIndicator } from 'utils/password-strength';
 
@@ -85,20 +86,13 @@ export default function ChangePasswordForm() {
             })}
             onSubmit={async (values, { setErrors, setStatus, setSubmitting, resetForm }) => {
                 try {
-                    // NOTE: This form does not connect to the API for this sprint
-                    // This is just UI/validation demonstration
-                    console.log('Change password values:', values);
+                    await authApi.changePassword({
+                        password: values.newPassword
+                    });
 
-                    // Simulate success
                     setStatus({ success: true });
                     setSubmitting(false);
                     resetForm();
-
-                    // In a real implementation, you would call the API here:
-                    // await authApi.changePassword({
-                    //   currentPassword: values.currentPassword,
-                    //   newPassword: values.newPassword
-                    // });
                 } catch (err: any) {
                     setStatus({ success: false });
                     setErrors({ submit: err.message });
@@ -112,7 +106,7 @@ export default function ChangePasswordForm() {
                         {status?.success && (
                             <Grid item xs={12}>
                                 <Alert severity="success">
-                                    Password changed successfully! (Note: This is a UI demonstration only - not connected to API this sprint)
+                                    Password changed successfully!
                                 </Alert>
                             </Grid>
                         )}
@@ -253,8 +247,7 @@ export default function ChangePasswordForm() {
 
                         <Grid item xs={12}>
                             <Alert severity="info">
-                                <strong>Note:</strong> This form is for UI demonstration only. It does not connect to the API in this sprint. Password
-                                requirements: minimum 6 characters, maximum 255 characters, must be different from current password.
+                                <strong>Note:</strong> Password requirements: minimum 6 characters, maximum 255 characters, must be different from current password.
                             </Alert>
                         </Grid>
                     </Grid>
