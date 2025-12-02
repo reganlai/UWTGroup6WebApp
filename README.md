@@ -7,17 +7,25 @@ Beta I Sprint
 Contributions:
 
 Boyd Bouck: Configured connection to Auth API; updated register/login pages to match API; deployment on Vercel
+
 Regan Lai: Movie and TV list pages
+
 Hussein Sheikh:
+
 Anthony Naydyuk:
+
 Communication for this sprint occurred through text and voice calls using Discord.
 
 Beta II Sprint
 
 Contributions:
+
 Boyd Bouck: Pushed to Vercel fixed errors
+
 Regan Lai: Pulled live data and showed them to TV and Movies pages. Rest of pages
+
 Hussein Sheikh:
+
 Anthony Naydyuk:
 
 Meetings: Discord
