@@ -61,10 +61,10 @@ export default function DeleteMediaButton({ id, type, title }: DeleteMediaButton
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title">{"Delete Media?"}</DialogTitle>
+                <DialogTitle id="alert-dialog-title">Delete Media?</DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        Are you sure you want to delete "{title}"? This action cannot be undone.
+                        Are you sure you want to delete &quot;{title}&quot;? This action cannot be undone.
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

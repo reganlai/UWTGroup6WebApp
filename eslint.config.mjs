@@ -73,6 +73,7 @@ export default [
       'react/react-in-jsx-scope': 'off',
       'react/jsx-props-no-spreading': 'off',
       'react/display-name': 'off',
+      'react/no-unescaped-entities': 'off',
 
       // Import rules
       'import/order': 'off',

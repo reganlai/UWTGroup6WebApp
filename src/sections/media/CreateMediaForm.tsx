@@ -82,12 +82,12 @@ export default function CreateMediaForm() {
                             await mediaApi.createMovie({
                                 title: values.title,
                                 overview: values.overview,
-                                posterPath: values.posterPath,
-                                releaseDate: values.releaseDate,
-                                voteAverage: 0,
-                                voteCount: 0,
+                                poster_url: values.posterPath,
+                                release_date: values.releaseDate,
+                                vote_average: 0,
+                                vote_count: 0,
                                 genres: [],
-                                cast: []
+                                actors: []
                             });
                             setStatus({ success: true });
                             setSubmitting(false);

@@ -23,22 +23,21 @@ export const mockMovies: Movie[] = [
         title: 'The Quantum Paradox',
         overview:
             'A brilliant physicist discovers a way to manipulate time, but soon realizes that every change creates devastating consequences across multiple timelines. Racing against time itself, she must undo her greatest achievement to save humanity.',
-        posterPath: 'https://picsum.photos/seed/movie1/400/600',
-        backdropPath: 'https://picsum.photos/seed/movie1-back/1280/720',
-        releaseDate: '2024-03-15',
-        voteAverage: 8.2,
-        voteCount: 15420,
-        genres: [genres[4], genres[5], genres[3]],
+        poster_url: '/dummy_poster.jpg',
+        backdrop_url: '/dummy_backdrop.jpg',
+        release_date: '2024-03-15',
+        vote_average: 8.2,
+        vote_count: 15420,
+        genres: [genres[4].name, genres[5].name, genres[3].name],
         runtime: 142,
         tagline: 'Time is not on her side',
-        director: 'Sarah Chen',
-        budget: 85000000,
-        revenue: 342000000,
-        status: 'Released',
-        cast: [
-            { id: 1, name: 'Emma Watson', character: 'Dr. Sarah Mitchell' },
-            { id: 2, name: 'Oscar Isaac', character: 'Professor James Reed' },
-            { id: 3, name: 'Tilda Swinton', character: 'The Observer' }
+        directors: ['Sarah Chen'],
+        budget: '85000000',
+        revenue: '342000000',
+        actors: [
+            { name: 'Emma Watson', character: 'Dr. Sarah Mitchell' },
+            { name: 'Oscar Isaac', character: 'Professor James Reed' },
+            { name: 'Tilda Swinton', character: 'The Observer' }
         ]
     },
     {
@@ -46,22 +45,21 @@ export const mockMovies: Movie[] = [
         title: 'Neon Nights',
         overview:
             'In a cyberpunk metropolis, a former hacker is pulled back into the underground world when her daughter is kidnapped by a powerful tech corporation. She must navigate the dangerous digital landscape to bring her home.',
-        posterPath: 'https://picsum.photos/seed/movie2/400/600',
-        backdropPath: 'https://picsum.photos/seed/movie2-back/1280/720',
-        releaseDate: '2024-06-22',
-        voteAverage: 7.8,
-        voteCount: 12350,
-        genres: [genres[0], genres[4], genres[5]],
+        poster_url: '/dummy_poster.jpg',
+        backdrop_url: '/dummy_backdrop.jpg',
+        release_date: '2024-06-22',
+        vote_average: 7.8,
+        vote_count: 12350,
+        genres: [genres[0].name, genres[4].name, genres[5].name],
         runtime: 128,
         tagline: 'The future is now',
-        director: 'Kenji Tanaka',
-        budget: 65000000,
-        revenue: 198000000,
-        status: 'Released',
-        cast: [
-            { id: 4, name: 'Scarlett Johansson', character: 'Maya Chen' },
-            { id: 5, name: 'Idris Elba', character: 'Marcus Kane' },
-            { id: 6, name: 'Rinko Kikuchi', character: 'Akira Sato' }
+        directors: ['Kenji Tanaka'],
+        budget: '65000000',
+        revenue: '198000000',
+        actors: [
+            { name: 'Scarlett Johansson', character: 'Maya Chen' },
+            { name: 'Idris Elba', character: 'Marcus Kane' },
+            { name: 'Rinko Kikuchi', character: 'Akira Sato' }
         ]
     },
     {
@@ -69,22 +67,21 @@ export const mockMovies: Movie[] = [
         title: 'The Last Lighthouse',
         overview:
             'A reclusive lighthouse keeper discovers a mysterious signal from the depths of the ocean. As strange events unfold, he realizes he may be the only one standing between humanity and an ancient underwater threat.',
-        posterPath: 'https://picsum.photos/seed/movie3/400/600',
-        backdropPath: 'https://picsum.photos/seed/movie3-back/1280/720',
-        releaseDate: '2024-01-19',
-        voteAverage: 7.5,
-        voteCount: 9870,
-        genres: [genres[6], genres[11], genres[3]],
+        poster_url: '/dummy_poster.jpg',
+        backdrop_url: '/dummy_backdrop.jpg',
+        release_date: '2024-01-19',
+        vote_average: 7.5,
+        vote_count: 9870,
+        genres: [genres[6].name, genres[11].name, genres[3].name],
         runtime: 115,
         tagline: 'Some lights should never be followed',
-        director: 'Guillermo del Toro',
-        budget: 45000000,
-        revenue: 156000000,
-        status: 'Released',
-        cast: [
-            { id: 7, name: 'Willem Dafoe', character: 'Thomas Wake' },
-            { id: 8, name: 'Robert Pattinson', character: 'Ephraim Winslow' },
-            { id: 9, name: 'Anya Taylor-Joy', character: 'The Siren' }
+        directors: ['Guillermo del Toro'],
+        budget: '45000000',
+        revenue: '156000000',
+        actors: [
+            { name: 'Willem Dafoe', character: 'Thomas Wake' },
+            { name: 'Robert Pattinson', character: 'Ephraim Winslow' },
+            { name: 'Anya Taylor-Joy', character: 'The Siren' }
         ]
     },
     {
@@ -92,22 +89,21 @@ export const mockMovies: Movie[] = [
         title: 'Stellar Hearts',
         overview:
             'Two astronauts from rival space agencies find themselves stranded together on a distant planet. As they work to survive and find a way home, they discover that their connection transcends the boundaries of Earth.',
-        posterPath: 'https://picsum.photos/seed/movie4/400/600',
-        backdropPath: 'https://picsum.photos/seed/movie4-back/1280/720',
-        releaseDate: '2024-02-14',
-        voteAverage: 7.2,
-        voteCount: 8540,
-        genres: [genres[8], genres[4], genres[1]],
+        poster_url: '/dummy_poster.jpg',
+        backdrop_url: '/dummy_backdrop.jpg',
+        release_date: '2024-02-14',
+        vote_average: 7.2,
+        vote_count: 8540,
+        genres: [genres[8].name, genres[4].name, genres[1].name],
         runtime: 122,
         tagline: 'Love knows no distance',
-        director: 'Denis Villeneuve',
-        budget: 72000000,
-        revenue: 215000000,
-        status: 'Released',
-        cast: [
-            { id: 10, name: 'Ryan Gosling', character: 'Commander Alex Turner' },
-            { id: 11, name: 'Zendaya', character: 'Dr. Mira Volkov' },
-            { id: 12, name: 'Mahershala Ali', character: 'Mission Control Director' }
+        directors: ['Denis Villeneuve'],
+        budget: '72000000',
+        revenue: '215000000',
+        actors: [
+            { name: 'Ryan Gosling', character: 'Commander Alex Turner' },
+            { name: 'Zendaya', character: 'Dr. Mira Volkov' },
+            { name: 'Mahershala Ali', character: 'Mission Control Director' }
         ]
     },
     {
@@ -115,22 +111,21 @@ export const mockMovies: Movie[] = [
         title: 'The Heist Protocol',
         overview:
             'A team of elite thieves plans the impossible: stealing a priceless artifact from a high-security museum that uses cutting-edge AI security. But when their inside man goes dark, they must adapt on the fly or face capture.',
-        posterPath: 'https://picsum.photos/seed/movie5/400/600',
-        backdropPath: 'https://picsum.photos/seed/movie5-back/1280/720',
-        releaseDate: '2024-05-10',
-        voteAverage: 7.9,
-        voteCount: 11230,
-        genres: [genres[0], genres[5], genres[9]],
+        poster_url: '/dummy_poster.jpg',
+        backdrop_url: '/dummy_backdrop.jpg',
+        release_date: '2024-05-10',
+        vote_average: 7.9,
+        vote_count: 11230,
+        genres: [genres[0].name, genres[5].name, genres[9].name],
         runtime: 135,
         tagline: 'Trust no one. Steal everything.',
-        director: 'Christopher Nolan',
-        budget: 95000000,
-        revenue: 387000000,
-        status: 'Released',
-        cast: [
-            { id: 13, name: 'Tom Hardy', character: 'Jack Morrison' },
-            { id: 14, name: 'Lupita Nyongo', character: 'Zara Williams' },
-            { id: 15, name: 'Benedict Cumberbatch', character: 'Victor Cross' }
+        directors: ['Christopher Nolan'],
+        budget: '95000000',
+        revenue: '387000000',
+        actors: [
+            { name: 'Tom Hardy', character: 'Jack Morrison' },
+            { name: 'Lupita Nyongo', character: 'Zara Williams' },
+            { name: 'Benedict Cumberbatch', character: 'Victor Cross' }
         ]
     },
     {
@@ -138,22 +133,21 @@ export const mockMovies: Movie[] = [
         title: 'Echoes of Tomorrow',
         overview:
             'In a world where memories can be bought and sold, a memory detective investigates a series of impossible murders. Each victim shares the same final memory—one that hasn\'t happened yet.',
-        posterPath: 'https://picsum.photos/seed/movie6/400/600',
-        backdropPath: 'https://picsum.photos/seed/movie6-back/1280/720',
-        releaseDate: '2024-04-05',
-        voteAverage: 8.0,
-        voteCount: 13670,
-        genres: [genres[4], genres[11], genres[5]],
+        poster_url: '/dummy_poster.jpg',
+        backdrop_url: '/dummy_backdrop.jpg',
+        release_date: '2024-04-05',
+        vote_average: 8.0,
+        vote_count: 13670,
+        genres: [genres[4].name, genres[11].name, genres[5].name],
         runtime: 138,
         tagline: 'The past is just the beginning',
-        director: 'Alex Garland',
-        budget: 58000000,
-        revenue: 245000000,
-        status: 'Released',
-        cast: [
-            { id: 16, name: 'Florence Pugh', character: 'Detective Aria Kane' },
-            { id: 17, name: 'Adam Driver', character: 'Dr. Elias Vance' },
-            { id: 18, name: 'Cate Blanchett', character: 'The Collector' }
+        directors: ['Alex Garland'],
+        budget: '58000000',
+        revenue: '245000000',
+        actors: [
+            { name: 'Florence Pugh', character: 'Detective Aria Kane' },
+            { name: 'Adam Driver', character: 'Dr. Elias Vance' },
+            { name: 'Cate Blanchett', character: 'The Collector' }
         ]
     },
     {
@@ -161,22 +155,21 @@ export const mockMovies: Movie[] = [
         title: 'Wild Horizons',
         overview:
             'A documentary filmmaker travels to the Amazon rainforest to capture the last days of an uncontacted tribe. What she discovers challenges everything she knows about civilization and forces her to question her own purpose.',
-        posterPath: 'https://picsum.photos/seed/movie7/400/600',
-        backdropPath: 'https://picsum.photos/seed/movie7-back/1280/720',
-        releaseDate: '2024-07-18',
-        voteAverage: 7.6,
-        voteCount: 7890,
-        genres: [genres[1], genres[3]],
+        poster_url: '/dummy_poster.jpg',
+        backdrop_url: '/dummy_backdrop.jpg',
+        release_date: '2024-07-18',
+        vote_average: 7.6,
+        vote_count: 7890,
+        genres: [genres[1].name, genres[3].name],
         runtime: 118,
         tagline: 'Some stories choose you',
-        director: 'Chloé Zhao',
-        budget: 35000000,
-        revenue: 98000000,
-        status: 'Released',
-        cast: [
-            { id: 19, name: 'Saoirse Ronan', character: 'Kate Morrison' },
-            { id: 20, name: 'Wagner Moura', character: 'Carlos Silva' },
-            { id: 21, name: 'Q\'orianka Kilcher', character: 'Yana' }
+        directors: ['Chloé Zhao'],
+        budget: '35000000',
+        revenue: '98000000',
+        actors: [
+            { name: 'Saoirse Ronan', character: 'Kate Morrison' },
+            { name: 'Wagner Moura', character: 'Carlos Silva' },
+            { name: 'Q\'orianka Kilcher', character: 'Yana' }
         ]
     },
     {
@@ -184,22 +177,21 @@ export const mockMovies: Movie[] = [
         title: 'Code Red',
         overview:
             'When a deadly virus outbreak threatens to wipe out humanity, a team of scientists races against time to develop a cure. But they soon discover the virus was engineered, and someone wants to ensure it spreads.',
-        posterPath: 'https://picsum.photos/seed/movie8/400/600',
-        backdropPath: 'https://picsum.photos/seed/movie8-back/1280/720',
-        releaseDate: '2024-08-30',
-        voteAverage: 7.4,
-        voteCount: 10450,
-        genres: [genres[5], genres[3], genres[0]],
+        poster_url: '/dummy_poster.jpg',
+        backdrop_url: '/dummy_backdrop.jpg',
+        release_date: '2024-08-30',
+        vote_average: 7.4,
+        vote_count: 10450,
+        genres: [genres[5].name, genres[3].name, genres[0].name],
         runtime: 126,
         tagline: 'Time is the real enemy',
-        director: 'Kathryn Bigelow',
-        budget: 68000000,
-        revenue: 276000000,
-        status: 'Released',
-        cast: [
-            { id: 22, name: 'Michael B. Jordan', character: 'Dr. Marcus Webb' },
-            { id: 23, name: 'Jessica Chastain', character: 'Dr. Sarah Chen' },
-            { id: 24, name: 'Javier Bardem', character: 'General Ramirez' }
+        directors: ['Kathryn Bigelow'],
+        budget: '68000000',
+        revenue: '276000000',
+        actors: [
+            { name: 'Michael B. Jordan', character: 'Dr. Marcus Webb' },
+            { name: 'Jessica Chastain', character: 'Dr. Sarah Chen' },
+            { name: 'Javier Bardem', character: 'General Ramirez' }
         ]
     },
     {
@@ -207,22 +199,21 @@ export const mockMovies: Movie[] = [
         title: 'The Forgotten Kingdom',
         overview:
             'An archaeologist discovers an ancient map leading to a lost civilization. As she ventures deeper into uncharted territory, she uncovers secrets that could rewrite human history—if she survives to tell the tale.',
-        posterPath: 'https://picsum.photos/seed/movie9/400/600',
-        backdropPath: 'https://picsum.photos/seed/movie9-back/1280/720',
-        releaseDate: '2024-09-13',
-        voteAverage: 7.7,
-        voteCount: 9340,
-        genres: [genres[1], genres[9], genres[11]],
+        poster_url: '/dummy_poster.jpg',
+        backdrop_url: '/dummy_backdrop.jpg',
+        release_date: '2024-09-13',
+        vote_average: 7.7,
+        vote_count: 9340,
+        genres: [genres[1].name, genres[9].name, genres[11].name],
         runtime: 132,
         tagline: 'History has teeth',
-        director: 'James Cameron',
-        budget: 125000000,
-        revenue: 456000000,
-        status: 'Released',
-        cast: [
-            { id: 25, name: 'Alicia Vikander', character: 'Dr. Elena Cross' },
-            { id: 26, name: 'Dev Patel', character: 'Raj Malhotra' },
-            { id: 27, name: 'Michelle Yeoh', character: 'Professor Lin' }
+        directors: ['James Cameron'],
+        budget: '125000000',
+        revenue: '456000000',
+        actors: [
+            { name: 'Alicia Vikander', character: 'Dr. Elena Cross' },
+            { name: 'Dev Patel', character: 'Raj Malhotra' },
+            { name: 'Michelle Yeoh', character: 'Professor Lin' }
         ]
     },
     {
@@ -230,22 +221,21 @@ export const mockMovies: Movie[] = [
         title: 'Midnight Runner',
         overview:
             'A former Olympic sprinter turned underground courier must deliver a mysterious package across the city in under two hours. With assassins, corrupt cops, and rival gangs on her trail, every second counts.',
-        posterPath: 'https://picsum.photos/seed/movie10/400/600',
-        backdropPath: 'https://picsum.photos/seed/movie10-back/1280/720',
-        releaseDate: '2024-10-25',
-        voteAverage: 7.3,
-        voteCount: 8760,
-        genres: [genres[0], genres[5], genres[9]],
+        poster_url: '/dummy_poster.jpg',
+        backdrop_url: '/dummy_backdrop.jpg',
+        release_date: '2024-10-25',
+        vote_average: 7.3,
+        vote_count: 8760,
+        genres: [genres[0].name, genres[5].name, genres[9].name],
         runtime: 108,
         tagline: 'Run or die',
-        director: 'Chad Stahelski',
-        budget: 42000000,
-        revenue: 167000000,
-        status: 'Released',
-        cast: [
-            { id: 28, name: 'Letitia Wright', character: 'Maya Johnson' },
-            { id: 29, name: 'John Boyega', character: 'Detective Marcus Cole' },
-            { id: 30, name: 'Hiroyuki Sanada', character: 'Mr. Tanaka' }
+        directors: ['Chad Stahelski'],
+        budget: '42000000',
+        revenue: '167000000',
+        actors: [
+            { name: 'Letitia Wright', character: 'Maya Johnson' },
+            { name: 'John Boyega', character: 'Detective Marcus Cole' },
+            { name: 'Hiroyuki Sanada', character: 'Mr. Tanaka' }
         ]
     },
     {
@@ -253,22 +243,21 @@ export const mockMovies: Movie[] = [
         title: 'The Painted Veil',
         overview:
             'In 1920s Paris, a struggling artist discovers she can bring her paintings to life. But when a dark masterpiece escapes her control, she must confront the demons of her past before they consume her future.',
-        posterPath: 'https://picsum.photos/seed/movie11/400/600',
-        backdropPath: 'https://picsum.photos/seed/movie11-back/1280/720',
-        releaseDate: '2024-11-08',
-        voteAverage: 7.8,
-        voteCount: 6890,
-        genres: [genres[9], genres[3], genres[6]],
+        poster_url: '/dummy_poster.jpg',
+        backdrop_url: '/dummy_backdrop.jpg',
+        release_date: '2024-11-08',
+        vote_average: 7.8,
+        vote_count: 6890,
+        genres: [genres[9].name, genres[3].name, genres[6].name],
         runtime: 119,
         tagline: 'Art imitates death',
-        director: 'Greta Gerwig',
-        budget: 38000000,
-        revenue: 124000000,
-        status: 'Released',
-        cast: [
-            { id: 31, name: 'Thomasin McKenzie', character: 'Claire Beaumont' },
-            { id: 32, name: 'Timothée Chalamet', character: 'Henri Dubois' },
-            { id: 33, name: 'Léa Seydoux', character: 'Madame Rousseau' }
+        directors: ['Greta Gerwig'],
+        budget: '38000000',
+        revenue: '124000000',
+        actors: [
+            { name: 'Thomasin McKenzie', character: 'Claire Beaumont' },
+            { name: 'Timothée Chalamet', character: 'Henri Dubois' },
+            { name: 'Léa Seydoux', character: 'Madame Rousseau' }
         ]
     },
     {
@@ -276,22 +265,21 @@ export const mockMovies: Movie[] = [
         title: 'Velocity',
         overview:
             'In a future where speed is currency, a street racer discovers a conspiracy that threatens to enslave humanity. With only her skills behind the wheel and a ragtag crew, she must outrun the system itself.',
-        posterPath: 'https://picsum.photos/seed/movie12/400/600',
-        backdropPath: 'https://picsum.photos/seed/movie12-back/1280/720',
-        releaseDate: '2024-12-20',
-        voteAverage: 7.1,
-        voteCount: 7230,
-        genres: [genres[0], genres[4], genres[5]],
+        poster_url: '/dummy_poster.jpg',
+        backdrop_url: '/dummy_backdrop.jpg',
+        release_date: '2024-12-20',
+        vote_average: 7.1,
+        vote_count: 7230,
+        genres: [genres[0].name, genres[4].name, genres[5].name],
         runtime: 124,
         tagline: 'Fast. Furious. Free.',
-        director: 'Justin Lin',
-        budget: 78000000,
-        revenue: 298000000,
-        status: 'Released',
-        cast: [
-            { id: 34, name: 'Ana de Armas', character: 'Nova Cruz' },
-            { id: 35, name: 'Steven Yeun', character: 'Jin Park' },
-            { id: 36, name: 'Charlize Theron', character: 'The Architect' }
+        directors: ['Justin Lin'],
+        budget: '78000000',
+        revenue: '298000000',
+        actors: [
+            { name: 'Ana de Armas', character: 'Nova Cruz' },
+            { name: 'Steven Yeun', character: 'Jin Park' },
+            { name: 'Charlize Theron', character: 'The Architect' }
         ]
     }
 ];
