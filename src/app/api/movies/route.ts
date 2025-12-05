@@ -7,10 +7,15 @@ export async function GET(request: NextRequest) {
     try {
         const { searchParams } = new URL(request.url);
         const search = searchParams.get('search');
+        const page = searchParams.get('page');
+        const limit = searchParams.get('limit');
 
-        const url = search
-            ? `${API_URL}/api/movies?search=${encodeURIComponent(search)}`
-            : `${API_URL}/api/movies`;
+        const queryParams = new URLSearchParams();
+        if (search) queryParams.append('search', search);
+        if (page) queryParams.append('page', page);
+        if (limit) queryParams.append('limit', limit);
+
+        const url = `${API_URL}/api/movies${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
 
         const response = await fetch(url, {
             headers: {

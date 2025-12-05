@@ -9,22 +9,27 @@ import InputAdornment from '@mui/material/InputAdornment';
 import SearchIcon from '@mui/icons-material/Search';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 
 import MovieCard from 'components/cards/MovieCard';
 import { mediaApi } from 'services/mediaApi';
 import { Movie } from 'types/media';
+
+const ITEMS_PER_PAGE = 25;
 
 export default function MoviesPage() {
     const [searchTerm, setSearchTerm] = useState('');
     const [movies, setMovies] = useState<Movie[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         const fetchMovies = async () => {
             setLoading(true);
             try {
-                const response = await mediaApi.getMovies(searchTerm);
+                const response = await mediaApi.getMovies(searchTerm, currentPage, ITEMS_PER_PAGE);
                 setMovies(response.data);
                 setError(null);
             } catch (err: any) {
@@ -40,7 +45,7 @@ export default function MoviesPage() {
         }, 500); // Debounce search
 
         return () => clearTimeout(timeoutId);
-    }, [searchTerm]);
+    }, [searchTerm, currentPage]);
 
     return (
         <Box>
@@ -87,6 +92,20 @@ export default function MoviesPage() {
                         <Typography variant="h6" color="text.secondary" sx={{ textAlign: 'center', mt: 4 }}>
                             No movies found matching your search.
                         </Typography>
+                    )}
+                    {movies.length > 0 && (
+                        <Stack sx={{ mt: 6, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                            <Pagination
+                                count={435}
+                                page={currentPage}
+                                onChange={(e, page) => {
+                                    setCurrentPage(page);
+                                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                                }}
+                                color="primary"
+                                size="large"
+                            />
+                        </Stack>
                     )}
                 </>
             )}

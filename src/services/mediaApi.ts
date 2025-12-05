@@ -7,8 +7,14 @@ const localApi = axios.create();
 
 export const mediaApi = {
     // Movies
-    getMovies: (search?: string) =>
-        localApi.get<Movie[]>(`/api/movies${search ? `?search=${search}` : ''}`),
+    getMovies: (search?: string, page?: number, limit?: number) => {
+        const params = new URLSearchParams();
+        if (search) params.append('search', search);
+        if (page) params.append('page', page.toString());
+        if (limit) params.append('limit', limit.toString());
+        const query = params.toString();
+        return localApi.get<Movie[]>(`/api/movies${query ? `?${query}` : ''}`);
+    },
 
     getMovie: (id: number | string) =>
         localApi.get<Movie>(`/api/movies/${id}`),
@@ -20,8 +26,14 @@ export const mediaApi = {
         localApi.delete(`/api/movies/${id}`),
 
     // TV Shows
-    getTVShows: (search?: string) =>
-        localApi.get<TVShow[]>(`/api/tv-shows${search ? `?search=${search}` : ''}`),
+    getTVShows: (search?: string, page?: number, limit?: number) => {
+        const params = new URLSearchParams();
+        if (search) params.append('search', search);
+        if (page) params.append('page', page.toString());
+        if (limit) params.append('limit', limit.toString());
+        const query = params.toString();
+        return localApi.get<TVShow[]>(`/api/tv-shows${query ? `?${query}` : ''}`);
+    },
 
     getTVShow: (id: number | string) =>
         localApi.get<TVShow>(`/api/tv-shows/${id}`),
